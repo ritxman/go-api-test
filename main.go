@@ -21,11 +21,13 @@ func main() {
 	}
 
 	// Get all environment variables
-	envVars := os.Getenv("PORT")
+	port := os.Getenv("PORT")
+	testSecret := os.Getenv("TEST_SECRET")
 
 	r.HandleFunc("/api/test/{value}", test)
-	fmt.Println("Server is running on :", envVars)
-	http.ListenAndServe(":"+envVars, r)
+	fmt.Println("Server is running on :", port)
+	fmt.Println("Test Secret:", testSecret)
+	http.ListenAndServe(":"+port, r)
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
